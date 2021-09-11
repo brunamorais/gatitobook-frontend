@@ -1,0 +1,36 @@
+<header class="sticky-top">
+  <nav class="navbar navbar-light bg-white">
+    <a class="navbar-brand">
+      <i
+        class="fa fa-bars mr-2"
+        (click)="menu.abreMenu()"
+        (keyup.space)="menu.abreMenu()"
+      >
+      </i>
+      Gatito Book</a
+    >
+    <app-menu #menu>
+      <ul class="list-unstyled">
+        <li>
+          <a [routerLink]="['animais', 'novo']">Novo animal</a>
+        </li>
+      </ul>
+    </app-menu>
+    <!--pipe async-->
+    <div *ngIf="user$ | async as user">
+      <div *ngIf="user.name; else login">
+        <i class="fa fa-user-circle mr-1"> </i>
+        <!--user é um observable de usuario-->
+        <a class="mr-1">{{ user.name }}</a>
+        <a (click)="logout()">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!--não aparece, a menos que seja chamado-->
+  <ng-template #login>
+    <span class="navbar-text">
+      <a [routerLink]="['']">Login</a>
+    </span>
+  </ng-template>
+</header>
